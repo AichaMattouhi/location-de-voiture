@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('clients', ClientController::class);
+    Route::get('/search', [ClientController::class, 'search'])->name('clients.search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

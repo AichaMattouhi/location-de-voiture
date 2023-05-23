@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use App\Models\Client;
+use App\Models\User;
 
 
 class ClientController extends Controller
 {
     public function index()
    {
-    $clients = Client::all();
+    $clients = User::all();
 
     
     return view('Client.index', ['clients' => $clients]);

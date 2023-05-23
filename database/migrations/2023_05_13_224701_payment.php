@@ -16,8 +16,8 @@ return new class extends Migration
             $table->float('montant');
             $table->date('date');
             $table->string('modepaiement');
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('Reservations')->onDelete('cascade');
             $table->string('devise');
