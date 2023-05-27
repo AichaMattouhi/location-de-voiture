@@ -11,10 +11,12 @@ class ClientController extends Controller
 {
     public function index()
    {
-    $clients = User::all();
-
+    $users = User::all();
+   
+     
     
-    return view('Client.index', ['clients' => $clients]);
+    return view('User.index', ['users' => $users]);
+ 
    }
 
 
@@ -23,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('Client.create_form');
+        return view('User.create_form');
     }
     public function store(Request $request)
     {  
@@ -36,7 +38,6 @@ class ClientController extends Controller
             'pays' => 'required',
             'tel' => 'required',
             'email' => 'required|email|unique:clients',
-            'login' => 'required|unique:clients',
             'password' => 'required',
             'photo' => 'required|image',
         ]);
@@ -59,12 +60,12 @@ class ClientController extends Controller
             $photoPath = $photo->store('storage/photos', 'public');
     
             // Save the photo path to the database
-            $client->permis = $photoPath;
+            $user->permis = $photoPath;
         }
        
-        $client->login = $request->input('login');
-        $client->password = bcrypt($request->input('password'));
-        $client->save();
+       
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
         
     
         return redirect('/clients');
@@ -80,8 +81,8 @@ class ClientController extends Controller
     
     public function edit($id)
     {       
-            $client=Client::findOrfail($id);
-            return view('Client.edit', ['client' => $client]);
+            $user=User::findOrfail($id);
+            return view('User.edit', ['user' => $user]);
     }
 
     /**
@@ -92,26 +93,26 @@ class ClientController extends Controller
         
         
        
-        $client =Client::find($id);
+        $user =User::find($id);
        
-        $client->nom = $request->nom;
-        $client->prenom = $request->prenom;
-        $client->adresse = $request->adresse;
-        $client->zipcode =$request->zipcode;
-        $client->ville = $request->ville;
-        $client->pays = $request->pays;
-        $client->tel = $request->tel;
-        $client->email =$request->email;
+        $user->nom = $request->nom;
+        $user->prenom = $request->prenom;
+        $user->adresse = $request->adresse;
+        $user->zipcode =$request->zipcode;
+        $user->ville = $request->ville;
+        $user->pays = $request->pays;
+        $user->tel = $request->tel;
+        $user->email =$request->email;
     
         // Handle the uploaded photo if provided
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photoPath = $photo->store('storage/photos', 'public');
-            $client->permis = $photoPath;
+            $user->permis = $photoPath;
         }
     
         // Save the changes to the client
-        $client->save();
+        $user->save();
     
         return redirect('/clients');
     }
@@ -120,8 +121,8 @@ class ClientController extends Controller
     public function destroy($id)
    {
 
-      $client = Client::findOrFail($id);
-      $client->delete();
+      $user = User::findOrFail($id);
+      $user->delete();
       return redirect ('/clients');
 
    }
@@ -129,7 +130,7 @@ class ClientController extends Controller
 {
     $keyword = $request->input('keyword');
     
-    $clients = Client::query()
+    $users = User::query()
         ->where('nom', 'LIKE', "%{$keyword}%")
         ->orWhere('prenom', 'LIKE', "%{$keyword}%")
         ->orWhere('ville', 'LIKE', "%{$keyword}%")
@@ -137,7 +138,7 @@ class ClientController extends Controller
         ->orWhere('email', 'LIKE', "%{$keyword}%")
         ->get();
 
-    return view('Client.search', ['clients' => $clients]);
+    return view('User.search', ['users' => $users]);
 }
 
 

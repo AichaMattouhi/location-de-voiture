@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('adress');
+            $table->string('adresse');
             $table->string('zipcode');
-            $table->string('vile');
+            $table->string('ville');
             $table->string('pays');
-            $table->string('telephone');
+            $table->string('tel');
             $table->string('permis');
-            $table->integer('role_id');
+            $table->string('role');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

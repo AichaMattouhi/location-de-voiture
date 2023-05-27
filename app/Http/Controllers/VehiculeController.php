@@ -13,15 +13,36 @@ class VehiculeController extends Controller
      */
     public function index()
     {
-        //
+       $vehicules=Vehicule::all();
+       return view('vehicules.index')->with(['vehicules'=>$vehicules]);
+    }
+    //research guest
+    public function rsch()
+    {
+    $marque = isset($_GET['marque']) ? $_GET['marque'] : null;
+    $modele = isset($_GET['modele']) ? $_GET['modele'] : null;
+    $couleur = isset($_GET['couleur']) ? $_GET['couleur'] : null;
+    $nbrplaces = isset($_GET['nbrplaces']) ? $_GET['nbrplaces'] : null;
+    $prix = isset($_GET['prix']) ? $_GET['prix'] : null;
+    $query = Vehicule::query();
+    if (!empty($marque)) {
+        $query->where('marque', 'LIKE', '%' . $marque . '%');
+    }
+    if (!empty($modele)) {
+        $query->where('modele', 'LIKE', '%' . $modele . '%');
+    }
+    if (!empty($couleur)) {
+        $query->where('couleur', 'LIKE', '%' . $couleur . '%');
+    }
+    if (!empty($nbrplaces)) {
+        $query->where('nbrplaces', $nbrplaces);
+    }
+    if (!empty($prix)) {
+        $query->where('prix', '>=', $prix);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    $vehicules = $query->get();
+    return view('vehicules.researchvehicule')->with('vehicules', $vehicules);
     }
 
     /**
@@ -63,4 +84,5 @@ class VehiculeController extends Controller
     {
         //
     }
+    
 }

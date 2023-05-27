@@ -1,4 +1,4 @@
-<form method="POST" enctype="multipart/form-data"  action="{{route('clients_store') }}">
+<form method="POST" enctype="multipart/form-data"  action="{{route('clients.store') }}">
     @csrf
 
     <div>
