@@ -1,17 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Liste des clients
+            Liste des cliets
         </h2>
     </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <!-- This example requires Tailwind CSS v2.0+ -->
-            <form action="{{ route('clients.search') }}" method="GET">
-       <input type="text" name="keyword" placeholder="Recherche...">
-      <button type="submit">Rechercher</button>
-            </form>
+        <div class="overflow-hidden shadow-sm sm:rounded-lg">
+           
+            <div class="px-2 py-5">
+                <form action="{{ route('clients.search') }}" method="GET">
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="flex flex-row space-x-4 items-center">
+                            <input type="text" name="keyword" placeholder="Recherche..." class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm">
+                        </div>
+                       <div class="text-right">
+                        <a href="{{ route('clients.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter un client</a>
+                       </div>
+
+                    </div>
+                </form>
+            </div>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -90,7 +99,6 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    <a href="{{ route('clients.create')}}" class="text-indigo-600 hover:text-indigo-900"> create </a>  <br>
                                    
                             </table>
                         </div>
@@ -103,4 +111,3 @@
 </div>
 </x-app-layout>
 <div>
-clients.search

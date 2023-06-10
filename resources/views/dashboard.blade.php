@@ -10,6 +10,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
+                <br>
+                 <a href="{{route('admin.home')}}">Vehicules </a>
+                <br>
+                <a href="{{route('Allreservations')}}">Reservations </a>
+                <br>
+                <a href="{{route('clients.index')}}">Utilisateurs </a>
+                <br>
+                <a href="{{route('Allvehicules1')}}">Vehicules </a>
+                <br>
+                
                 </div>
             </div>
         </div>

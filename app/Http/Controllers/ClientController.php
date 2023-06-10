@@ -12,14 +12,9 @@ class ClientController extends Controller
     public function index()
    {
     $users = User::all();
-   
-     
-    
     return view('User.index', ['users' => $users]);
  
    }
-
-
     /**
      * Show the form for creating a new resource.
      */
